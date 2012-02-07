@@ -1,0 +1,781 @@
+[
+  {
+    "pk": 22, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_logentry", 
+      "name": "Can add log entry", 
+      "content_type": 8
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_logentry", 
+      "name": "Can change log entry", 
+      "content_type": 8
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_logentry", 
+      "name": "Can delete log entry", 
+      "content_type": 8
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_group", 
+      "name": "Can add group", 
+      "content_type": 2
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_group", 
+      "name": "Can change group", 
+      "content_type": 2
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_group", 
+      "name": "Can delete group", 
+      "content_type": 2
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_message", 
+      "name": "Can add message", 
+      "content_type": 4
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_message", 
+      "name": "Can change message", 
+      "content_type": 4
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_message", 
+      "name": "Can delete message", 
+      "content_type": 4
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_permission", 
+      "name": "Can add permission", 
+      "content_type": 1
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_permission", 
+      "name": "Can change permission", 
+      "content_type": 1
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_permission", 
+      "name": "Can delete permission", 
+      "content_type": 1
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_user", 
+      "name": "Can add user", 
+      "content_type": 3
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_user", 
+      "name": "Can change user", 
+      "content_type": 3
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_user", 
+      "name": "Can delete user", 
+      "content_type": 3
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_contenttype", 
+      "name": "Can add content type", 
+      "content_type": 5
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_contenttype", 
+      "name": "Can change content type", 
+      "content_type": 5
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_contenttype", 
+      "name": "Can delete content type", 
+      "content_type": 5
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_merchant", 
+      "name": "Can add merchant", 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_merchant", 
+      "name": "Can change merchant", 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_merchant", 
+      "name": "Can delete merchant", 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_purchaseactivity", 
+      "name": "Can add purchase activity", 
+      "content_type": 17
+    }
+  }, 
+  {
+    "pk": 50, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_purchaseactivity", 
+      "name": "Can change purchase activity", 
+      "content_type": 17
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_purchaseactivity", 
+      "name": "Can delete purchase activity", 
+      "content_type": 17
+    }
+  }, 
+  {
+    "pk": 55, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_referralactivity", 
+      "name": "Can add referral activity", 
+      "content_type": 19
+    }
+  }, 
+  {
+    "pk": 56, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_referralactivity", 
+      "name": "Can change referral activity", 
+      "content_type": 19
+    }
+  }, 
+  {
+    "pk": 57, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_referralactivity", 
+      "name": "Can delete referral activity", 
+      "content_type": 19
+    }
+  }, 
+  {
+    "pk": 46, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_reward", 
+      "name": "Can add reward", 
+      "content_type": 16
+    }
+  }, 
+  {
+    "pk": 47, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_reward", 
+      "name": "Can change reward", 
+      "content_type": 16
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_reward", 
+      "name": "Can delete reward", 
+      "content_type": 16
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_rewardactivity", 
+      "name": "Can add reward activity", 
+      "content_type": 18
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_rewardactivity", 
+      "name": "Can change reward activity", 
+      "content_type": 18
+    }
+  }, 
+  {
+    "pk": 54, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_rewardactivity", 
+      "name": "Can delete reward activity", 
+      "content_type": 18
+    }
+  }, 
+  {
+    "pk": 43, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_rewardprogram", 
+      "name": "Can add reward program", 
+      "content_type": 15
+    }
+  }, 
+  {
+    "pk": 44, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_rewardprogram", 
+      "name": "Can change reward program", 
+      "content_type": 15
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_rewardprogram", 
+      "name": "Can delete reward program", 
+      "content_type": 15
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_userpoint", 
+      "name": "Can add user point", 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_userpoint", 
+      "name": "Can change user point", 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_userpoint", 
+      "name": "Can delete user point", 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_userpref", 
+      "name": "Can add user pref", 
+      "content_type": 13
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_userpref", 
+      "name": "Can change user pref", 
+      "content_type": 13
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_userpref", 
+      "name": "Can delete user pref", 
+      "content_type": 13
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_userprofile", 
+      "name": "Can add user profile", 
+      "content_type": 9
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_userprofile", 
+      "name": "Can change user profile", 
+      "content_type": 9
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_userprofile", 
+      "name": "Can delete user profile", 
+      "content_type": 9
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_userprogress", 
+      "name": "Can add user progress", 
+      "content_type": 11
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_userprogress", 
+      "name": "Can change user progress", 
+      "content_type": 11
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_userprogress", 
+      "name": "Can delete user progress", 
+      "content_type": 11
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_userreward", 
+      "name": "Can add user reward", 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_userreward", 
+      "name": "Can change user reward", 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_userreward", 
+      "name": "Can delete user reward", 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_session", 
+      "name": "Can add session", 
+      "content_type": 6
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_session", 
+      "name": "Can change session", 
+      "content_type": 6
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_session", 
+      "name": "Can delete session", 
+      "content_type": 6
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_site", 
+      "name": "Can add site", 
+      "content_type": 7
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_site", 
+      "name": "Can change site", 
+      "content_type": 7
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_site", 
+      "name": "Can delete site", 
+      "content_type": 7
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "jlu", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2011-10-09 19:27:08", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$a14cd$1b5275b0f21138b9b932eaf3a60912d1dcfc58cc", 
+      "email": "jun@cardmeleon.me", 
+      "date_joined": "2011-10-09 19:27:08"
+    }
+  },
+  {
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "testuser", 
+      "first_name": "test", 
+      "last_name": "user", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2011-10-09 19:27:08", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$a14cd$1b5275b0f21138b9b932eaf3a60912d1dcfc58cc", 
+      "email": "jun@cardmeleon.me", 
+      "date_joined": "2011-10-09 19:27:08"
+    }
+  },
+  {
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "testuser2", 
+      "first_name": "test2", 
+      "last_name": "user2", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2011-10-09 19:27:08", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$a14cd$1b5275b0f21138b9b932eaf3a60912d1dcfc58cc", 
+      "email": "jun@cardmeleon.me", 
+      "date_joined": "2011-10-09 19:27:08"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "server.userprofile", 
+    "fields": {
+      "deviceid": "abcdefg", 
+      "phone": "4082323232", 
+      "facebook": null, 
+      "user": 2, 
+      "referer": 3
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "server.userprofile", 
+    "fields": {
+      "deviceid": "1234567", 
+      "phone": "4084545455", 
+      "facebook": null, 
+      "user": 3, 
+      "referer": null
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "server.userpoint", 
+    "fields": {
+      "points": 200, 
+      "user": 2
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "server.userpoint", 
+    "fields": {
+      "points": 150, 
+      "user": 3
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "server.userprogress", 
+    "fields": {
+      "merchant": 1, 
+      "cur_times": 2, 
+      "user": 2, 
+      "cur_dollar_amt": "50.25"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "server.userprogress", 
+    "fields": {
+      "merchant": 2, 
+      "cur_times": 200, 
+      "user": 2, 
+      "cur_dollar_amt": "206.5"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "server.userreward", 
+    "fields": {
+      "reward": 1, 
+      "user": 2, 
+      "forsale": false, 
+      "expiration": "2012-03-12"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "server.userreward", 
+    "fields": {
+      "reward": 2, 
+      "user": 2, 
+      "forsale": true, 
+      "expiration": "2012-08-20"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "server.userreward", 
+    "fields": {
+      "reward": 1, 
+      "user": 3, 
+      "forsale": true, 
+      "expiration": "2012-08-15"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "server.userreward", 
+    "fields": {
+      "reward": 2, 
+      "user": 3, 
+      "forsale": false, 
+      "expiration": "2012-05-06"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "server.userpref", 
+    "fields": {
+      "nearby_radius": 40.0, 
+      "user": 2
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "server.userpref", 
+    "fields": {
+      "nearby_radius": 60.0, 
+      "user": 3
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "server.merchant", 
+    "fields": {
+      "name": "Safeway", 
+      "longitude": 201.32300000000001, 
+      "phone": "6502334332", 
+      "address": "434 abc ave, san jose, ca", 
+      "latitude": 102.45399999999999, 
+      "logo": "/path/to/logo.png", 
+      "email": "safeway@safeway.com"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "server.merchant", 
+    "fields": {
+      "name": "StarBucks", 
+      "longitude": 22.323, 
+      "phone": "4082334332", 
+      "address": "101 abc ave, san jose, ca", 
+      "latitude": 44.454000000000001, 
+      "logo": "/path2/to/logo.png", 
+      "email": "support@starbucks.com"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "server.rewardprogram", 
+    "fields": {
+      "merchant": 1, 
+      "status": 1, 
+      "name": "safeway loyalty program", 
+      "prog_type": 1, 
+      "reward_trigger": 200.0, 
+      "end_time": null, 
+      "reward": 1, 
+      "start_time": null
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "server.rewardprogram", 
+    "fields": {
+      "merchant": 2, 
+      "status": 1, 
+      "name": "starbucks loyalty program", 
+      "prog_type": 1, 
+      "reward_trigger": 200.0, 
+      "end_time": null, 
+      "reward": 2, 
+      "start_time": null
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "server.rewardprogram", 
+    "fields": {
+      "merchant": 1, 
+      "status": 1, 
+      "name": "safeway loyalty program 2", 
+      "prog_type": 0, 
+      "reward_trigger": 400.0, 
+      "end_time": null, 
+      "reward": 2, 
+      "start_time": null
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "server.reward", 
+    "fields": {
+      "merchant": 1, 
+      "status": 1, 
+      "equiv_points": 20, 
+      "name": "free bread", 
+      "expire_in_days": 0, 
+      "expire_in_years": 3, 
+      "equiv_dollar": "20", 
+      "expire_in_months": 0, 
+      "description": "free whole-wheet bread"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "server.reward", 
+    "fields": {
+      "merchant": 2, 
+      "status": 1, 
+      "equiv_points": 10, 
+      "name": "free starbucks", 
+      "expire_in_days": 0, 
+      "expire_in_years": 3, 
+      "equiv_dollar": "10", 
+      "expire_in_months": 0, 
+      "description": "free one cup of starbucks coffee"
+    }
+  }
+]
