@@ -708,6 +708,28 @@
   }, 
   {
     "pk": 1, 
+    "model": "server.userreview", 
+    "fields": {
+      "merchant": 1,
+      "user": 2,
+      "review": "this merchant is awesome!", 
+      "time": null, 
+      "rating": 3.5
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "server.userreview", 
+    "fields": {
+      "merchant": 1,
+      "user": 3,
+      "review": "I love it!", 
+      "time": null, 
+      "rating": 4.0
+    }
+  }, 
+  {
+    "pk": 1, 
     "model": "server.rewardprogram", 
     "fields": {
       "merchant": 1, 

@@ -883,7 +883,7 @@ class MerchantHandler(SharedHandler):
         base = Merchant.objects
 
         if merchant_id:
-            self.fields = ('name', 'longitude', 'phone', 'address', 'latitude', 'logo', 'email', ('rewardprogram_set',()))
+            self.fields = ('name', 'longitude', 'phone', 'address', 'latitude', 'logo', 'email', ('rewardprogram_set',()), ('userreview_set',()))
             return base.get(id=merchant_id)
             
             #return {"name":userpref, "user":user, }

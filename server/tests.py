@@ -278,7 +278,7 @@ class ServerTest(TestCase):
         response = c.get("/api/users/2/review", **self.extra)
         #print response.content
         r = json.loads(response.content)
-        self.assertEqual(0, len(r), '')
+        self.assertEqual(1, len(r), '')
    
         jsonstr = json.dumps({"merchant":{"id":1}, "review":"this merchant is awesome!", "rating":4.5})
         response = c.post("/api/users/2/review", jsonstr, 'application/json', **self.extra)
@@ -305,13 +305,26 @@ class ServerTest(TestCase):
                     "name": "Safeway", 
                     "id": 1
                 }, 
+                "rating": "3.5", 
+                "review": "this merchant is awesome!", 
+                "user": {
+                    "username": "testuser", 
+                    "id": 2
+                }, 
+                "time": null
+            }, 
+            {
+                "merchant": {
+                    "name": "Safeway", 
+                    "id": 1
+                }, 
                 "rating": "4.5", 
                 "review": "this merchant is awesome!", 
                 "user": {
                     "username": "testuser", 
                     "id": 2
                 }, 
-                "time": "2012-02-02"
+                "time": "2012-02-07"
             }, 
             {
                 "merchant": {
@@ -324,7 +337,7 @@ class ServerTest(TestCase):
                     "username": "testuser", 
                     "id": 2
                 }, 
-                "time": "2012-02-02"
+                "time": "2012-02-07"
             }, 
             {
                 "merchant": {
@@ -337,29 +350,87 @@ class ServerTest(TestCase):
                     "username": "testuser", 
                     "id": 2
                 }, 
-                "time": "2012-02-02"
+                "time": "2012-02-07"
             }
         ]
         """
         response = c.get("/api/users/2/review", **self.extra)
         #print response.content
         r = json.loads(response.content)
-        self.assertEqual(3, len(r), '')
+        self.assertEqual(4, len(r), '')
         self.assertEqual("this merchant is awesome!", r[0]['review'], '')
-        self.assertEqual('4.5', r[0]['rating'], '')
-        self.assertEqual("very good! will come back", r[1]['review'], '')
-        self.assertEqual(2.0, float(r[1]['rating']), '')
-        self.assertEqual("nice food", r[2]['review'], '')
-        self.assertEqual('3.5', r[2]['rating'], '')
+        self.assertEqual('3.5', r[0]['rating'], '')
+        self.assertEqual("this merchant is awesome!", r[1]['review'], '')
+        self.assertEqual('4.5', r[1]['rating'], '')
+        self.assertEqual("very good! will come back", r[2]['review'], '')
+        self.assertEqual(2.0, float(r[2]['rating']), '')
+        self.assertEqual("nice food", r[3]['review'], '')
+        self.assertEqual('3.5', r[3]['rating'], '')
         
+        """
+        [
+            {
+                "merchant": {
+                    "name": "Safeway", 
+                    "id": 1
+                }, 
+                "rating": "3.5", 
+                "review": "this merchant is awesome!", 
+                "user": {
+                    "username": "testuser", 
+                    "id": 2
+                }, 
+                "time": null
+            }, 
+            {
+                "merchant": {
+                    "name": "Safeway", 
+                    "id": 1
+                }, 
+                "rating": "4.0", 
+                "review": "I love it!", 
+                "user": {
+                    "username": "testuser2", 
+                    "id": 3
+                }, 
+                "time": null
+            }, 
+            {
+                "merchant": {
+                    "name": "Safeway", 
+                    "id": 1
+                }, 
+                "rating": "4.5", 
+                "review": "this merchant is awesome!", 
+                "user": {
+                    "username": "testuser", 
+                    "id": 2
+                }, 
+                "time": "2012-02-07"
+            }, 
+            {
+                "merchant": {
+                    "name": "Safeway", 
+                    "id": 1
+                }, 
+                "rating": "3.5", 
+                "review": "nice food", 
+                "user": {
+                    "username": "testuser", 
+                    "id": 2
+                }, 
+                "time": "2012-02-07"
+            }
+        ]
+        """
         response = c.get("/api/stores/1/review", **self.extra)
         #print response.content
         r = json.loads(response.content)
-        self.assertEqual(2, len(r), '')
-        self.assertEqual("this merchant is awesome!", r[0]['review'], '')
-        self.assertEqual('4.5', r[0]['rating'], '')
-        self.assertEqual("nice food", r[1]['review'], '')
-        self.assertEqual('3.5', r[1]['rating'], '')
+        self.assertEqual(4, len(r), '')
+        self.assertEqual("this merchant is awesome!", r[2]['review'], '')
+        self.assertEqual('4.5', r[2]['rating'], '')
+        self.assertEqual("nice food", r[3]['review'], '')
+        self.assertEqual('3.5', r[3]['rating'], '')
         
         response = c.get("/api/stores/2/review", **self.extra)
         #print response.content
@@ -494,6 +565,34 @@ class ServerTest(TestCase):
             ], 
             "longitude": 201.323, 
             "phone": "6502334332", 
+            "userreview_set": [
+                {
+                    "merchant": {
+                        "name": "Safeway", 
+                        "id": 1
+                    }, 
+                    "rating": "3.5", 
+                    "review": "this merchant is awesome!", 
+                    "user": {
+                        "username": "testuser", 
+                        "id": 2
+                    }, 
+                    "time": null
+                }, 
+                {
+                    "merchant": {
+                        "name": "Safeway", 
+                        "id": 1
+                    }, 
+                    "rating": "4.0", 
+                    "review": "I love it!", 
+                    "user": {
+                        "username": "testuser2", 
+                        "id": 3
+                    }, 
+                    "time": null
+                }
+            ], 
             "address": "434 abc ave, san jose, ca", 
             "latitude": 102.454, 
             "logo": "/path/to/logo.png", 
@@ -503,7 +602,7 @@ class ServerTest(TestCase):
         response = c.get("/api/stores/1", **self.extra)
         #print response.content
         r = json.loads(response.content)
-        self.assertEqual(8, len(r), 'number of fields returned is not 7')
+        self.assertEqual(9, len(r), '')
         self.assertEqual('Safeway', r['name'], '')
         self.assertEqual('6502334332', r['phone'], '')
         self.assertEqual('/path/to/logo.png', r['logo'], '')
@@ -513,6 +612,7 @@ class ServerTest(TestCase):
         self.assertEqual('safeway loyalty program 2', r['rewardprogram_set'][1]['name'], '')
         self.assertEqual(0, r['rewardprogram_set'][1]['prog_type'], '')
         self.assertEqual(10, r['rewardprogram_set'][1]['reward']['equiv_points'], '')
+        self.assertEqual(2, len(r['userreview_set']), '')
         
         jsonstr = json.dumps({"name":"BostonMarket","email":"xin@test.com","phone":"4082538985","address":"973 1st st, san jose, ca","logo":"/logo/bm.png","longitude":"150.20","latitude":"90.09"})
         response = c.post("/api/stores", jsonstr, 'application/json', **self.extra)
@@ -523,7 +623,7 @@ class ServerTest(TestCase):
         response = c.get("/api/stores/82", **self.extra)
         #print response.content
         r = json.loads(response.content)
-        self.assertEqual(8, len(r), '')
+        self.assertEqual(9, len(r), '')
         self.assertEqual('BostonMarket', r['name'], '')
         self.assertEqual('4082538985', r['phone'], '')
         self.assertEqual('/logo/bm.png', r['logo'], '')
@@ -537,7 +637,7 @@ class ServerTest(TestCase):
         response = c.get("/api/stores/82", **self.extra)
         #print response.content
         r = json.loads(response.content)
-        self.assertEqual(8, len(r), '')
+        self.assertEqual(9, len(r), '')
         self.assertEqual('BostonMarket', r['name'], '')
         self.assertEqual('6509234325', r['phone'], '')
         self.assertEqual('bm@test.com', r['email'], '')
