@@ -345,7 +345,7 @@ class UserPrefHandler(SharedHandler):
 class UserRewardHandler(SharedHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = UserReward
-    fields = (('user', ('id','username')), 'reward', 'expiration', 'forsale')
+    fields = ('id', ('user', ('id','username')), 'reward', 'expiration', 'forsale')
 
     def existsAndActive(self, user, reward):
         exists, userreward = self.exists(user, reward)
