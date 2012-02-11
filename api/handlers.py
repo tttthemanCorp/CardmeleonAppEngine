@@ -123,19 +123,19 @@ class SharedHandler(BaseHandler):
         if user_id is not None:
             user = self.userById(user_id)
             if user is None:
-                raise LookupError, 'No User with this id exists: '+user_id
+                raise LookupError, 'No User with this id exists: %d' % user_id
                 
         reward = None  
         if reward_id is not None:
             reward = self.rewardById(reward_id)
             if reward is None:
-                raise LookupError, 'No Reward with this id exists: '+reward_id
+                raise LookupError, 'No Reward with this id exists: %d' % reward_id
         
         merchant = None
         if merchant_id is not None:
             merchant = self.merchantById(merchant_id)
             if merchant is None:
-                raise LookupError, 'No Merchant with this id exists: '+merchant_id
+                raise LookupError, 'No Merchant with this id exists: %d' % merchant_id
             
         return (user, reward, merchant)
 
@@ -286,7 +286,7 @@ class UserPrefHandler(SharedHandler):
         except UserPref.DoesNotExist:
             user = self.userById(userId)
             if user is None:
-                raise LookupError, 'No User with this user_id exists: '+userId
+                raise LookupError, 'No User with this user_id exists: %d' % userId
             else:
                 #insert
                 pref = UserPref()
@@ -294,7 +294,7 @@ class UserPrefHandler(SharedHandler):
                 pref.user = user
                 pref.save()
         except UserPref.MultipleObjectsReturned:
-            raise LookupError, 'More than 1 UserPref records exist in DB for user_id='+userId
+            raise LookupError, 'More than 1 UserPref records exist in DB for user_id=%d' % userId
 
     def read(self, request, user_id):
         """
@@ -338,7 +338,7 @@ class UserPrefHandler(SharedHandler):
         except UserPref.DoesNotExist:
             return rc.DELETED
         except UserPref.MultipleObjectsReturned:
-            raise LookupError, 'More than 1 UserPref records exist in DB for user_id='+user_id
+            raise LookupError, 'More than 1 UserPref records exist in DB for user_id=%d' % user_id
         
 
 #UserRewardHandler
@@ -357,10 +357,10 @@ class UserRewardHandler(SharedHandler):
         return (False, None)
 
     def exists(self, user, reward):
-        try:
-            userreward = UserReward.objects.get(user__id=user.id, reward__id=reward.id)
-            return (True, userreward)
-        except UserReward.DoesNotExist:
+        userrewards = UserReward.objects.filter(user__id=user.id, reward__id=reward.id)
+        if userrewards:
+            return (True, userrewards[0])
+        else:
             return (False, None)
 
     def read(self, request, user_id=None, sell_only='forsell', free_code=None):
@@ -657,12 +657,16 @@ class RedeemActivityHandler(SharedHandler):
         attrs = self.flatten_dict(request.data)
         #print attrs
         
-        user, reward, _ = self.idsValidation(user_id, attrs['reward']['id'], None)
+        userrewardId = attrs['userreward_id']
+        try:
+            userreward = UserReward.objects.get(id=userrewardId)
+            if userreward.user.id != int(user_id):
+                raise ValueError, "reward to redeem does not belong to this user"
+        except UserReward.DoesNotExist:
+            raise ValueError, "invalid userreward"
         
-        urHandler = UserRewardHandler()
-        exists, userreward = urHandler.existsAndActive(user, reward)
-        if not exists:
-            raise ValueError, "reward doesn't belong to user, or reward is invalid/expired"
+        user, _, _ = self.idsValidation(user_id, None, None)
+        reward = userreward.reward
             
         #insert reward activity
         rewardActivity = RewardActivity()
@@ -712,18 +716,20 @@ class TradeActivityHandler(SharedHandler):
         attrs = self.flatten_dict(request.data)
         #print attrs
         
-        user, reward, _ = self.idsValidation(user_id, attrs['reward']['id'], None)
+        userrewardId = attrs['userreward_id']
+        try:
+            userreward = UserReward.objects.get(id=userrewardId)
+            if userreward.user.id == int(user_id):
+                raise ValueError, "reward belongs to this user already"
+        except UserReward.DoesNotExist:
+            raise ValueError, "invalid userreward"
         
-        sellerId = attrs['from_user']['id']
-        seller = self.userById(sellerId)
-        if seller is None:
-            raise LookupError, 'No Seller with this id exists: '+sellerId
+        buyer, _, _ = self.idsValidation(user_id, None, None)
+        seller = userreward.user
+        sellerId = seller.id
         
-        urHandler = UserRewardHandler()
-        exists, userreward = urHandler.existsAndActive(seller, reward)
-        if not exists:
-            raise ValueError, "reward doesn't belong to user, or reward is invalid/expired"
-        
+        reward = userreward.reward
+
         try:
             buyerPoint = UserPoint.objects.get(user__id=user_id)
             if buyerPoint.points < reward.equiv_points:
@@ -739,10 +745,10 @@ class TradeActivityHandler(SharedHandler):
         rewardActivity.description = attrs.get('description')
         rewardActivity.points_value = reward.equiv_points
         rewardActivity.from_user = seller
-        rewardActivity.to_user = user
+        rewardActivity.to_user = buyer
             
         #update UserReward record
-        userreward.user = user
+        userreward.user = buyer
         userreward.forsale = False
         
         #update UserPoint records
@@ -795,17 +801,21 @@ class GiftActivityHandler(SharedHandler):
         attrs = self.flatten_dict(request.data)
         #print attrs
         
-        user, reward, _ = self.idsValidation(user_id, attrs['reward']['id'], None)
+        userrewardId = attrs['userreward_id']
+        try:
+            userreward = UserReward.objects.get(id=userrewardId)
+            if userreward.user.id != int(user_id):
+                raise ValueError, "reward does not belong to this user"
+        except UserReward.DoesNotExist:
+            raise ValueError, "invalid userreward"
+        
+        user = userreward.user
+        reward = userreward.reward
         
         user2Id = attrs['to_user']['id']
         user2 = self.userById(user2Id)
         if user2 is None:
-            raise LookupError, 'No User with this to_user_id exists: '+user2Id
-        
-        urHandler = UserRewardHandler()
-        exists, userreward = urHandler.existsAndActive(user, reward)
-        if not exists:
-            raise ValueError, "reward doesn't belong to user, or reward is invalid/expired"
+            raise LookupError, 'No User with this to_user_id exists: %d' % user2Id
             
         #insert reward activity
         rewardActivity = RewardActivity()
@@ -835,12 +845,16 @@ class GiftActivityHandler(SharedHandler):
         attrs = self.flatten_dict(request.data)
         #print attrs
         
-        user, reward, _ = self.idsValidation(user_id, attrs['reward']['id'], None)
+        userrewardId = attrs['userreward_id']
+        try:
+            userreward = UserReward.objects.get(id=userrewardId)
+            if userreward.user.id != int(user_id):
+                raise ValueError, "reward does not belong to this user"
+        except UserReward.DoesNotExist:
+            raise ValueError, "invalid userreward"
         
-        urHandler = UserRewardHandler()
-        exists, _ = urHandler.existsAndActive(user, reward)
-        if not exists:
-            raise ValueError, "reward doesn't belong to user, or reward is invalid/expired"
+        user = userreward.user
+        reward = userreward.reward
             
         #insert reward activity
         rewardActivity = RewardActivity()
@@ -968,7 +982,7 @@ class UserPointHandler(SharedHandler):
         except UserPoint.DoesNotExist:
             user = self.userById(userId)
             if user is None:
-                raise LookupError, 'No User with this user_id exists: '+userId
+                raise LookupError, 'No User with this user_id exists: %d' % userId
             else:
                 #insert
                 userpoints = UserPoint()
@@ -976,7 +990,7 @@ class UserPointHandler(SharedHandler):
                 userpoints.user = user
                 userpoints.save()
         except UserPoint.MultipleObjectsReturned:
-            raise LookupError, 'More than 1 UserPoint records exist in DB for user_id='+userId
+            raise LookupError, 'More than 1 UserPoint records exist in DB for user_id=%d' % userId
 
     def read(self, request, user_id):
         """

@@ -1211,7 +1211,7 @@ class ServerTest(TestCase):
         Tests trade activity handler
         """
         c = Client()
-        jsonstr = json.dumps({"reward":{"id":1}, "from_user":{'id':3}, "description":"test buy"})
+        jsonstr = json.dumps({"userreward_id":3, "description":"test buy"})
         response = c.post('/api/users/2/buy', jsonstr, 'application/json', **self.extra)
         #print response.content
         r = json.loads(response.content)
@@ -1291,13 +1291,13 @@ class ServerTest(TestCase):
         """
         c = Client()
         
-        jsonstr = json.dumps({"reward":{"id":1}, "to_user":{'id':3}, "description":"test gifting"})
+        jsonstr = json.dumps({"userreward_id":1, "to_user":{'id':3}, "description":"test gifting"})
         response = c.post('/api/users/2/gift', jsonstr, 'application/json', **self.extra)
         #print response.content
         r = json.loads(response.content)
         self.assertEqual(82, r["gift_code"], '')
         
-        jsonstr = json.dumps({"reward":{"id":2}, "description":"test gifting for non-member"})
+        jsonstr = json.dumps({"userreward_id":2, "description":"test gifting for non-member"})
         response = c.put('/api/users/2/gift', jsonstr, 'application/json', **self.extra)
         #print response.content
         r = json.loads(response.content)
@@ -1421,7 +1421,7 @@ class ServerTest(TestCase):
         Tests redeem activity handler
         """
         c = Client()
-        jsonstr = json.dumps({"reward":{"id":1}, "description":"test redeem"})
+        jsonstr = json.dumps({"userreward_id":1, "description":"test redeem"})
         response = c.post('/api/users/2/redeem', jsonstr, 'application/json', **self.extra)
         #print response.content
         r = json.loads(response.content)

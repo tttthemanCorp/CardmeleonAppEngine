@@ -99,7 +99,7 @@ urlpatterns = patterns('',
    # Post: create a new merchant ;
    url(r'^stores$', merchant_handler, {'emitter_format':'json'}),
    # Get: get all nearby merchants ;
-   url(r'^stores/prox/((?P<longitude>\d*\.?\d+),(?P<latitude>\d*\.?\d+),(?P<distance>\d+))?$', merchant_handler, {'emitter_format':'json'}),
+   url(r'^stores/prox/(-?(?P<longitude>\d*\.?\d+),-?(?P<latitude>\d*\.?\d+),(?P<distance>\d+))?$', merchant_handler, {'emitter_format':'json'}),
    # Get: get all user reviews for 1 merchant ;  
    url(r'^stores/(?P<merchant_id>\d+)/review$', userreview_handler, {'emitter_format':'json'}),
 )

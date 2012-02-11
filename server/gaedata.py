@@ -20,6 +20,7 @@ class GaeDataPrep:
         auth = self.getAuthorizationHeaderValue("testuser", "ttttheman")
         headers = {"Content-type":"application/json", "Authorization":auth}
         conn = httplib.HTTPConnection("cardmeleonapi.appspot.com", 80)
+        #conn = httplib.HTTPConnection("127.0.0.1", 8000)
         conn.request(method, urlpath, payload, headers)
         response = conn.getresponse()
         print response.status, response.reason
@@ -29,7 +30,9 @@ class GaeDataPrep:
         
     def insertTestData(self):
         #params = urllib.urlencode({'@number': 12524, '@type': 'issue', '@action': 'show'})
-
+        
+        """
+        
         m1 = {"id":5001}
         m2 = {"id":6001}
         m3 = {"id":5002}
@@ -174,7 +177,6 @@ class GaeDataPrep:
         response = self.rest("POST", "/api/users/%d/review" % u2['id'], jsonstr)
         print "26. userreview left by user 2: %s" % response
         
-        """
         
         
 if __name__ == '__main__':
