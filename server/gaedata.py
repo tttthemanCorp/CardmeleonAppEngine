@@ -28,7 +28,7 @@ class GaeDataPrep:
         conn.close()
         return data
         
-    def insertTestData(self):
+    def insertAllData(self):
         #params = urllib.urlencode({'@number': 12524, '@type': 'issue', '@action': 'show'})
         
         """
@@ -178,8 +178,65 @@ class GaeDataPrep:
         print "26. userreview left by user 2: %s" % response
         
         
+    def insertMoreData(self):
+        #params = urllib.urlencode({'@number': 12524, '@type': 'issue', '@action': 'show'})
+
+        # merchant
+        m1 = {"id":5001}
+        m2 = {"id":6001}
+        m3 = {"id":5002}
+        
+        # reward
+        r1 = {"id":3005}
+        r2 = {"id":4003}
+        r3 = {"id":3006}
+        
+        # program
+        p1 = {"id":8}
+        p2 = {"id":8003}
+        p3 = {"id":1005}
+        
+        # user & profile
+        u1 = {"id":1}
+        u2 = {"id":3003}
+        
+        # user point
+        jsonstr = json.dumps({"points":500})
+        response = self.rest("PUT", "/api/users/%d/point" % u1['id'], jsonstr)
+        print "13. userpoint set for user 1: %s" % response
+        
+        jsonstr = json.dumps({"points":400})
+        response = self.rest("PUT", "/api/users/%d/point" % u2['id'], jsonstr)
+        print "14. userpoint set for user 1: %s" % response
+        
+        # user reward
+        jsonstr = json.dumps({"merchant_id":m1['id'], "rewardprogram_id":p1['id']})
+        response = self.rest("POST", '/api/users/%d/reward/2011' % u1['id'], jsonstr)
+        print "15. userreward set for user 1: %s" % response
+        
+        jsonstr = json.dumps({"merchant_id":m2['id'], "rewardprogram_id":p2['id']})
+        response = self.rest("POST", '/api/users/%d/reward/2011' % u1['id'], jsonstr)
+        print "16. userreward set for user 1: %s" % response
+        
+        jsonstr = json.dumps({"merchant_id":m3['id'], "rewardprogram_id":p3['id']})
+        response = self.rest("POST", '/api/users/%d/reward/2011' % u1['id'], jsonstr)
+        print "16.5. userreward set for user 1: %s" % response
+        
+        jsonstr = json.dumps({"merchant_id":m1['id'], "rewardprogram_id":p1['id']})
+        response = self.rest("POST", '/api/users/%d/reward/2011' % u2['id'], jsonstr)
+        print "17. userreward set for user 2: %s" % response
+        
+        jsonstr = json.dumps({"merchant_id":m2['id'], "rewardprogram_id":p2['id']})
+        response = self.rest("POST", '/api/users/%d/reward/2011' % u2['id'], jsonstr)
+        print "17.5. userreward set for user 2: %s" % response
+        
+        jsonstr = json.dumps({"merchant_id":m3['id'], "rewardprogram_id":p3['id']})
+        response = self.rest("POST", '/api/users/%d/reward/2011' % u2['id'], jsonstr)
+        print "18. userreward set for user 2: %s" % response
+
+
         
 if __name__ == '__main__':
     from gaedata import GaeDataPrep
     gdp = GaeDataPrep()
-    gdp.insertTestData()
+    gdp.insertMoreData()
